@@ -1,5 +1,5 @@
-import r from 'restructure';
-const fs = require('fs');
+import r from "restructure";
+// const fs = require('fs');
 
 var fontkit = {};
 export default fontkit;
@@ -17,13 +17,15 @@ fontkit.openSync = function(filename, postscriptName) {
 };
 
 fontkit.open = function(filename, postscriptName, callback) {
-  if (typeof postscriptName === 'function') {
+  if (typeof postscriptName === "function") {
     callback = postscriptName;
     postscriptName = null;
   }
 
   fs.readFile(filename, function(err, buffer) {
-    if (err) { return callback(err); }
+    if (err) {
+      return callback(err);
+    }
 
     try {
       var font = fontkit.create(buffer, postscriptName);
@@ -50,10 +52,10 @@ fontkit.create = function(buffer, postscriptName) {
     }
   }
 
-  throw new Error('Unknown font format');
+  throw new Error("Unknown font format");
 };
 
-fontkit.defaultLanguage = 'en';
-fontkit.setDefaultLanguage = function(lang = 'en') {
+fontkit.defaultLanguage = "en";
+fontkit.setDefaultLanguage = function(lang = "en") {
   fontkit.defaultLanguage = lang;
 };
